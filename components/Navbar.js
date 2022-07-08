@@ -43,26 +43,36 @@ const Navbar = ({ logOut, user, cart, addToCart, removeFromCart, clearCart, subT
             <a className="mr-5 hover:text-white">Stickers</a>
           </Link>
         </nav>
-        {user.value && <button onClick={logOut} className="inline-flex items-center  bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 mr-2 md:mt-0">
-          <h1>Log Out</h1>
-        </button>}
+        {user.value &&
+          <div>
+            <Link href={'/myaccount'}>
+              <button className="inline-flex items-center  bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 mr-2 md:mt-0">
+                My Account
+              </button></Link>
+            <Link href={'/orders'}>
+              <button className="inline-flex items-center  bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 mr-2 md:mt-0">
+                Orders
+              </button></Link>
+            <button onClick={toggleCart} className="inline-flex items-center   bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mr-2 md:mt-0">
+              <HiOutlineShoppingCart />Cart
+            </button>
+            <button onClick={logOut} className="inline-flex items-center  bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 mr-2 md:mt-0">
+              <h1>Log Out</h1>
+            </button>
+          </div>}
         {!user.value && <div>
           <Link href={'/login'}>
             <button className="inline-flex items-center  bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
               <h1>Login</h1>
             </button>
           </Link>
-        </div>}
-        {!user.value && <div>
           <Link href={'/signup'}>
             <button className="inline-flex items-center mx-4 bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
               <h1> Sign Up</h1>
             </button>
           </Link>
         </div>}
-        <button onClick={toggleCart} className="inline-flex  items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
-          <HiOutlineShoppingCart />  <h1>Cart</h1>
-        </button>
+
 
       </div>
       <div ref={ref} className={`z-10 sideCart overflow-y-auto  w-72  h-[100vh]  fixed   top-0 right-0 bg-gray-300 py-10 px-8 transform transition-transform 

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
   const [cart, setcart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
   const [user, setUser] = useState({ value: null })
-  const [key, setKey] = useState(0)
+  const [key, setKey] = useState("")
   const [progress, setProgress] = useState(0)
   const router = useRouter();
 
@@ -100,6 +100,7 @@ function MyApp({ Component, pageProps }) {
     localStorage.removeItem('token')
     setUser({ value: null })
     setKey(Math.random())
+    router.push('/')
   }
 
   return (
@@ -124,8 +125,8 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/logo.svg" type="image/svg" />
       </Head>
-      <Navbar logOut={logOut} key={key} user={user} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart}
-        clearCart={clearCart} subTotal={subTotal} buyNow={buyNow} />
+      {key && <Navbar logOut={logOut} key={key} user={user} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart}
+        clearCart={clearCart} subTotal={subTotal} buyNow={buyNow} />}
       <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart}
         clearCart={clearCart} subTotal={subTotal} {...pageProps} buyNow={buyNow} />
       <Footer />
